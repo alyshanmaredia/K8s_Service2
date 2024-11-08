@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: processorcontainer-deployment
-  labels:
-    app: processorcontainer
 spec:
   replicas: 1
   selector:
