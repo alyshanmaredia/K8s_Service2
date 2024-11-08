@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: processorcontainer-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: processorcontainer
+  template:
+    metadata:
+      labels:
+        app: processorcontainer
+    spec:
+      containers:
+        - name: processorcontainer
+          image: us-central1-docker.pkg.dev/dalprojects/k8s/processorcontainer:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - name: data-volume
+              mountPath: /hm_PV_dir
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: a3-pvc
+
