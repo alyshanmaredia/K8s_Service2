@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: processorcontainer-deployment
+  name: processorcontainer
 spec:
   replicas: 1
   selector:
@@ -15,7 +15,6 @@ spec:
       containers:
         - name: processorcontainer
           image: us-central1-docker.pkg.dev/dalprojects/k8s/processorcontainer:v1
-          imagePullPolicy: Always
           ports:
             - containerPort: 7000
           volumeMounts:
